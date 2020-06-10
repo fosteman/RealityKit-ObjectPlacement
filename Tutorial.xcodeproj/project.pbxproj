@@ -15,6 +15,9 @@
 		B825154C24914CCC00972985 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B825154A24914CCC00972985 /* LaunchScreen.storyboard */; };
 		B825155724914CCC00972985 /* TutorialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B825155624914CCC00972985 /* TutorialTests.swift */; };
 		B825156224914CCC00972985 /* TutorialUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B825156124914CCC00972985 /* TutorialUITests.swift */; };
+		B825157324914DE400972985 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157024914DE300972985 /* toy_biplane.usdz */; };
+		B825157424914DE400972985 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157124914DE400972985 /* tv_retro.usdz */; };
+		B825157524914DE400972985 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157224914DE400972985 /* toy_drummer.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		B825155D24914CCC00972985 /* TutorialUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorialUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B825156124914CCC00972985 /* TutorialUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialUITests.swift; sourceTree = "<group>"; };
 		B825156324914CCC00972985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B825157024914DE300972985 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
+		B825157124914DE400972985 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
+		B825157224914DE400972985 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		B825153E24914CCB00972985 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				B825156F24914DBD00972985 /* Models */,
 				B825153F24914CCB00972985 /* AppDelegate.swift */,
 				B825154124914CCB00972985 /* ContentView.swift */,
 				B825154324914CCB00972985 /* Experience.rcproject */,
@@ -134,6 +141,16 @@
 				B825156324914CCC00972985 /* Info.plist */,
 			);
 			path = TutorialUITests;
+			sourceTree = "<group>";
+		};
+		B825156F24914DBD00972985 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B825157024914DE300972985 /* toy_biplane.usdz */,
+				B825157224914DE400972985 /* toy_drummer.usdz */,
+				B825157124914DE400972985 /* tv_retro.usdz */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,7 +259,10 @@
 			files = (
 				B825154C24914CCC00972985 /* LaunchScreen.storyboard in Resources */,
 				B825154924914CCC00972985 /* Preview Assets.xcassets in Resources */,
+				B825157324914DE400972985 /* toy_biplane.usdz in Resources */,
+				B825157424914DE400972985 /* tv_retro.usdz in Resources */,
 				B825154624914CCC00972985 /* Assets.xcassets in Resources */,
+				B825157524914DE400972985 /* toy_drummer.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +459,7 @@
 				DEVELOPMENT_TEAM = 6FVY28G8X9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Tutorial/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +480,7 @@
 				DEVELOPMENT_TEAM = 6FVY28G8X9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Tutorial/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
