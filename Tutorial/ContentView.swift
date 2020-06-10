@@ -11,7 +11,26 @@ import RealityKit
 
 struct ContentView : View {
     
-    var models: [String] = ["toy_biplane", "tv_retro", "toy_drummer"]
+    private var models: [String] = {
+       // Dynamic filename reading
+        let filemanager = FileManager.default
+        
+        guard let path = Bundle.main.resourcePath,
+            let files = try? filemanager.contentsOfDirectory(atPath: path)
+            else {
+                // If any file is nil
+                return []
+        }
+        
+        var availableModels: [String] = []
+        for filename in files where filename.hasSuffix("usdz") {
+            let modelname = filename.replacingOccurrences(of: ".usdz", with: "")
+            
+            availableModels.append(modelname)
+        }
+        
+        return availableModels
+    }()
     
     var body: some View {
         ZStack(alignment: .bottom) {
