@@ -12,6 +12,9 @@ import RealityKit
 struct ContentView : View {
     
     @State private var isPlacing = false
+    @State private var selectedModel: String?
+    @State private var modelConfirmedForPlacement: String?
+
     
     private var models: [String] = {
        // Dynamic filename reading
@@ -36,22 +39,24 @@ struct ContentView : View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            ARViewContainer()
+            ARViewContainer(modelConfirmedForPlacement: $modelConfirmedForPlacement)
             
             
             
             
             if self.isPlacing {
-                PlacementButtonsView(isPlacing: self.$isPlacing)
+                PlacementButtonsView(isPlacing: self.$isPlacing, selectedModel: self.$selectedModel, modelConfirmedForPlacement: $modelConfirmedForPlacement)
             }
             else {
                 // Binding State
-                ModelPickerView(isPlacing: self.$isPlacing, models: self.models)
+                ModelPickerView(isPlacing: self.$isPlacing, selectedModel: self.$selectedModel, models: self.models)
             }
     }
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    @Binding var modelConfirmedForPlacement: String?
+    
     
     func makeUIView(context: Context) -> ARView {
         
@@ -63,17 +68,25 @@ struct ARViewContainer: UIViewRepresentable {
         
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        if let modelName = self.modelConfirmedForPlacement {
+            print("Debug: adding \(modelName) to scene")
+            
+            DispatchQueue.main.async {
+                self.modelConfirmedForPlacement = nil
+            }
+        }
+    }
     
 }
 
 struct ModelPickerView: View {
     @Binding var isPlacing: Bool
-    
+    @Binding var selectedModel: String?
     
     var models: [String]
     
-    
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 30) {
@@ -85,6 +98,11 @@ struct ModelPickerView: View {
                         
                         // Switch UI
                         self.isPlacing = true
+                        
+                        // Select the model
+                        self.selectedModel = self.models[index]
+                        
+                        
                     }, label: {
                         Image(uiImage: UIImage(named: self.models[index])!)
                         .resizable()
@@ -107,8 +125,14 @@ struct PlacementButtonsView: View {
     // UI
     @Binding var isPlacing: Bool
     func resetPlacementParameters() {
-         self.isPlacing = false
+        self.isPlacing = false
+        self.selectedModel = nil
      }
+    
+    //
+    @Binding var selectedModel: String?
+    @Binding var modelConfirmedForPlacement: String?
+    
     
     var body: some View {
         HStack {
@@ -118,6 +142,8 @@ struct PlacementButtonsView: View {
                     
                     /// Switch UI
                     self.resetPlacementParameters()
+                    
+                    self.modelConfirmedForPlacement = self.selectedModel
                 }, label: {
                     Image(systemName: "xmark")
                     .resizable()
