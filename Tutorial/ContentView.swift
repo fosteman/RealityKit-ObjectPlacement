@@ -8,6 +8,7 @@
 
 import SwiftUI
 import RealityKit
+import ARKit
 
 struct ContentView : View {
     
@@ -61,9 +62,20 @@ struct ARViewContainer: UIViewRepresentable {
     func makeUIView(context: Context) -> ARView {
         
         let arView = ARView(frame: .zero)
+            
+        let config = ARWorldTrackingConfiguration()
+        config.planeDetection = [.horizontal, .vertical]
+        config.environmentTexturing = .automatic
+        // LiDAR
+        if #available(iOS 13.4, *) {
+            if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
+                config.sceneReconstruction = .mesh
+            }
+        } else {
+            // Fallback on earlier versions
+        }
         
-        
-        
+        arView.session.run(config)
         return arView
         
     }
