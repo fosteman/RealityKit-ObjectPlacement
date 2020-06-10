@@ -11,6 +11,8 @@ import RealityKit
 
 struct ContentView : View {
     
+    @State private var isPlacing = false
+    
     private var models: [String] = {
        // Dynamic filename reading
         let filemanager = FileManager.default
@@ -36,9 +38,16 @@ struct ContentView : View {
         ZStack(alignment: .bottom) {
             ARViewContainer()
             
-            ModelPickerView(models: self.models)
             
-            PlacementButtonsView()
+            
+            
+            if self.isPlacing {
+                PlacementButtonsView(isPlacing: self.$isPlacing)
+            }
+            else {
+                // Binding State
+                ModelPickerView(isPlacing: self.$isPlacing, models: self.models)
+            }
     }
 }
 
@@ -59,7 +68,11 @@ struct ARViewContainer: UIViewRepresentable {
 }
 
 struct ModelPickerView: View {
+    @Binding var isPlacing: Bool
+    
+    
     var models: [String]
+    
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -69,6 +82,9 @@ struct ModelPickerView: View {
                     index in
                     Button(action: {
                         print("Debug selected model: \(self.models[index])" )
+                        
+                        // Switch UI
+                        self.isPlacing = true
                     }, label: {
                         Image(uiImage: UIImage(named: self.models[index])!)
                         .resizable()
@@ -88,11 +104,20 @@ struct ModelPickerView: View {
 }
 
 struct PlacementButtonsView: View {
+    // UI
+    @Binding var isPlacing: Bool
+    func resetPlacementParameters() {
+         self.isPlacing = false
+     }
+    
     var body: some View {
         HStack {
                 // Cancel Button
                 Button(action: {
                     print("Debug: Cancel Model Placement")
+                    
+                    /// Switch UI
+                    self.resetPlacementParameters()
                 }, label: {
                     Image(systemName: "xmark")
                     .resizable()
@@ -107,6 +132,8 @@ struct PlacementButtonsView: View {
                 //Confirmation Button
                 Button(action: {
                     print("Debug: Confirm Model Placement")
+                    
+                    self.resetPlacementParameters()
                 }, label: {
                     Image(systemName: "checkmark")
                     .resizable()
