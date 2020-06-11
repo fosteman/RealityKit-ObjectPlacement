@@ -14,11 +14,11 @@ import WebKit
 struct ContentView : View {
     
     @State private var isPlacing = false
-    @State private var selectedModel: String?
-    @State private var modelConfirmedForPlacement: String?
+    @State private var selectedModel: Model?
+    @State private var modelConfirmedForPlacement: Model?
 
     
-    private var models: [String] = {
+    private var models: [Model] = {
        // Dynamic filename reading
         let filemanager = FileManager.default
         
@@ -29,12 +29,16 @@ struct ContentView : View {
                 return []
         }
         
-        var availableModels: [String] = []
+        var availableModels: [Model] = []
         for filename in files where filename.hasSuffix("usdz") {
             let modelname = filename.replacingOccurrences(of: ".usdz", with: "")
             
-            availableModels.append(modelname)
+            let model = Model(modelName: modelname)
+            
+            availableModels.append(model)
         }
+        
+        print("availableModels count: \(availableModels.count)")
         
         return availableModels
     }()
@@ -57,7 +61,7 @@ struct ContentView : View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
-    @Binding var modelConfirmedForPlacement: String?
+    @Binding var modelConfirmedForPlacement: Model?
     
     
     func makeUIView(context: Context) -> ARView {
@@ -82,16 +86,25 @@ struct ARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
-        if let modelName = self.modelConfirmedForPlacement {
-            print("Debug: adding \(modelName) to scene")
+        if let model = self.modelConfirmedForPlacement {
+            print("Debug: adding \(model.modelName) to scene")
+                
+            if let modelEntity = model.modelEntity {
+                let anchorEntity = AnchorEntity(plane: .any)
+                
+                anchorEntity.addChild(modelEntity)
+                
+                uiView.scene.addAnchor(anchorEntity)
+            }
+            else {
+                print("Unable to load model entity \(model.modelName)")
+            }
             
-            let filename = modelName + ".usdz"
-            let modelEntity = try! ModelEntity.loadModel(named: filename)
-            let anchorEntity = AnchorEntity(plane: .any)
-            anchorEntity.addChild(modelEntity)
+
+                
+
             
-            uiView.scene.addAnchor(anchorEntity)
-            
+
             DispatchQueue.main.async {
                 self.modelConfirmedForPlacement = nil
             }
@@ -102,9 +115,9 @@ struct ARViewContainer: UIViewRepresentable {
 
 struct ModelPickerView: View {
     @Binding var isPlacing: Bool
-    @Binding var selectedModel: String?
+    @Binding var selectedModel: Model?
     
-    var models: [String]
+    var models: [Model]
     
     // WEbView
     // var modelMaslo: WKWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), configuration: WKWebViewConfiguration())
@@ -116,7 +129,7 @@ struct ModelPickerView: View {
                 ForEach(0 ..< self.models.count) {
                     index in
                     Button(action: {
-                        print("Debug: selected \(self.models[index])" )
+                        print("Debug: selected \(self.models[index].modelName)" )
                         
                         // Switch UI
                         self.isPlacing = true
@@ -126,7 +139,7 @@ struct ModelPickerView: View {
                         
                         
                     }, label: {
-                        Image(uiImage: UIImage(named: self.models[index])!)
+                        Image(uiImage: self.models[index].image)
                         .resizable()
                             .frame(height: 80)
                             .aspectRatio(1/1, contentMode: .fit)
@@ -152,8 +165,8 @@ struct PlacementButtonsView: View {
      }
     
     //
-    @Binding var selectedModel: String?
-    @Binding var modelConfirmedForPlacement: String?
+    @Binding var selectedModel: Model?
+    @Binding var modelConfirmedForPlacement: Model?
     
     // return (<div><div/>) <-- HTML
     var body: some View {

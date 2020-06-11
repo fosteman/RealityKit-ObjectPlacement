@@ -18,6 +18,7 @@
 		B825157324914DE400972985 /* toy_biplane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157024914DE300972985 /* toy_biplane.usdz */; };
 		B825157424914DE400972985 /* tv_retro.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157124914DE400972985 /* tv_retro.usdz */; };
 		B825157524914DE400972985 /* toy_drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B825157224914DE400972985 /* toy_drummer.usdz */; };
+		B8251577249268D400972985 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8251576249268D400972985 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B825157024914DE300972985 /* toy_biplane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_biplane.usdz; sourceTree = "<group>"; };
 		B825157124914DE400972985 /* tv_retro.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv_retro.usdz; sourceTree = "<group>"; };
 		B825157224914DE400972985 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
+		B8251576249268D400972985 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				B825154A24914CCC00972985 /* LaunchScreen.storyboard */,
 				B825154D24914CCC00972985 /* Info.plist */,
 				B825154724914CCC00972985 /* Preview Content */,
+				B8251576249268D400972985 /* Model.swift */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				B825154224914CCB00972985 /* ContentView.swift in Sources */,
 				B825154024914CCB00972985 /* AppDelegate.swift in Sources */,
 				B825154424914CCB00972985 /* Experience.rcproject in Sources */,
+				B8251577249268D400972985 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
