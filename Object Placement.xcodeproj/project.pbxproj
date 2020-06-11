@@ -20,6 +20,7 @@
 		B8251577249268D400972985 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8251576249268D400972985 /* Model.swift */; };
 		B825157A2492739600972985 /* FocusEntity in Frameworks */ = {isa = PBXBuildFile; productRef = B82515792492739600972985 /* FocusEntity */; };
 		B825157C249273D100972985 /* CustomARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B825157B249273D100972985 /* CustomARView.swift */; };
+		B88C41FC24927E4100EFC73F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B88C41FB24927E4100EFC73F /* README.md */; };
 		B8A9F97924927CC000F62DDE /* tree.usdz in Resources */ = {isa = PBXBuildFile; fileRef = B8A9F97824927CC000F62DDE /* tree.usdz */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		B825157224914DE400972985 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		B8251576249268D400972985 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B825157B249273D100972985 /* CustomARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomARView.swift; sourceTree = "<group>"; };
+		B88C41FB24927E4100EFC73F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B8A9F97824927CC000F62DDE /* tree.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tree.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +92,7 @@
 		B825153324914CCB00972985 = {
 			isa = PBXGroup;
 			children = (
-				B825153E24914CCB00972985 /* Tutorial */,
+				B825153E24914CCB00972985 /* Object Placement */,
 				B825156024914CCC00972985 /* TutorialUITests */,
 				B825153D24914CCB00972985 /* Products */,
 			);
@@ -106,7 +108,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B825153E24914CCB00972985 /* Tutorial */ = {
+		B825153E24914CCB00972985 /* Object Placement */ = {
 			isa = PBXGroup;
 			children = (
 				B825156F24914DBD00972985 /* Models */,
@@ -119,8 +121,9 @@
 				B825154724914CCC00972985 /* Preview Content */,
 				B8251576249268D400972985 /* Model.swift */,
 				B825157B249273D100972985 /* CustomARView.swift */,
+				B88C41FB24927E4100EFC73F /* README.md */,
 			);
-			path = Tutorial;
+			path = "Object Placement";
 			sourceTree = "<group>";
 		};
 		B825154724914CCC00972985 /* Preview Content */ = {
@@ -267,6 +270,7 @@
 				B8A9F97924927CC000F62DDE /* tree.usdz in Resources */,
 				B825157424914DE400972985 /* tv_retro.usdz in Resources */,
 				B825154624914CCC00972985 /* Assets.xcassets in Resources */,
+				B88C41FC24927E4100EFC73F /* README.md in Resources */,
 				B825157524914DE400972985 /* toy_drummer.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
