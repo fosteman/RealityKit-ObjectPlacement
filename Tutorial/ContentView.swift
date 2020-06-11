@@ -59,30 +59,16 @@ struct ContentView : View {
             }
     }
 }
+    
+
 
 struct ARViewContainer: UIViewRepresentable {
     @Binding var modelConfirmedForPlacement: Model?
     
     
     func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
-            
-        let config = ARWorldTrackingConfiguration()
-        config.planeDetection = [.horizontal, .vertical]
-        config.environmentTexturing = .automatic
-        // LiDAR
-        if #available(iOS 13.4, *) {
-            if ARWorldTrackingConfiguration.supportsSceneReconstruction(.mesh) {
-                config.sceneReconstruction = .mesh
-            }
-        } else {
-            // Fallback on earlier versions
-        }
-        
-        arView.session.run(config)
-        return arView
-        
+        let view = CustomARView(frame: .zero)
+        return view
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
@@ -91,8 +77,8 @@ struct ARViewContainer: UIViewRepresentable {
                 
             if let modelEntity = model.modelEntity {
                 let anchorEntity = AnchorEntity(plane: .any)
-                
-                anchorEntity.addChild(modelEntity)
+                // Cloning
+                anchorEntity.addChild(modelEntity.clone(recursive: true))
                 
                 uiView.scene.addAnchor(anchorEntity)
             }
