@@ -58,6 +58,7 @@
 		B825157224914DE400972985 /* toy_drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = toy_drummer.usdz; sourceTree = "<group>"; };
 		B8251576249268D400972985 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B825157B249273D100972985 /* CustomARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomARView.swift; sourceTree = "<group>"; };
+		B88C41FD2492805400EFC73F /* IMG_0455.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IMG_0455.PNG; path = ../../../Downloads/IMG_0455.PNG; sourceTree = "<group>"; };
 		B8A9F97824927CC000F62DDE /* tree.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tree.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +110,7 @@
 		B825153E24914CCB00972985 /* Object Placement */ = {
 			isa = PBXGroup;
 			children = (
+				B88C41FD2492805400EFC73F /* IMG_0455.PNG */,
 				B825156F24914DBD00972985 /* Models */,
 				B825153F24914CCB00972985 /* AppDelegate.swift */,
 				B825154124914CCB00972985 /* ContentView.swift */,
