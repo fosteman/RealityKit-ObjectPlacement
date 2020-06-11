@@ -9,6 +9,7 @@
 import SwiftUI
 import RealityKit
 import ARKit
+import WebKit
 
 struct ContentView : View {
     
@@ -105,6 +106,8 @@ struct ModelPickerView: View {
     
     var models: [String]
     
+    // WEbView
+    // var modelMaslo: WKWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: 500, height: 500), configuration: WKWebViewConfiguration())
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -145,14 +148,14 @@ struct PlacementButtonsView: View {
     @Binding var isPlacing: Bool
     func resetPlacementParameters() {
         self.isPlacing = false
-        self.selectedModel = nil
+        self.selectedModel = nil // null
      }
     
     //
     @Binding var selectedModel: String?
     @Binding var modelConfirmedForPlacement: String?
     
-    
+    // return (<div><div/>) <-- HTML
     var body: some View {
         HStack {
                 // Cancel Button
@@ -176,7 +179,7 @@ struct PlacementButtonsView: View {
                 
                 //Confirmation Button
                 Button(action: {
-                    
+                    // set selected model
                     self.modelConfirmedForPlacement = self.selectedModel
                     
                     print("Debug: Confirm \(String(describing: self.selectedModel)) Placement")
