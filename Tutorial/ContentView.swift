@@ -84,6 +84,13 @@ struct ARViewContainer: UIViewRepresentable {
         if let modelName = self.modelConfirmedForPlacement {
             print("Debug: adding \(modelName) to scene")
             
+            let filename = modelName + ".usdz"
+            let modelEntity = try! ModelEntity.loadModel(named: filename)
+            let anchorEntity = AnchorEntity(plane: .any)
+            anchorEntity.addChild(modelEntity)
+            
+            uiView.scene.addAnchor(anchorEntity)
+            
             DispatchQueue.main.async {
                 self.modelConfirmedForPlacement = nil
             }
@@ -106,7 +113,7 @@ struct ModelPickerView: View {
                 ForEach(0 ..< self.models.count) {
                     index in
                     Button(action: {
-                        print("Debug selected model: \(self.models[index])" )
+                        print("Debug: selected \(self.models[index])" )
                         
                         // Switch UI
                         self.isPlacing = true
@@ -155,7 +162,7 @@ struct PlacementButtonsView: View {
                     /// Switch UI
                     self.resetPlacementParameters()
                     
-                    self.modelConfirmedForPlacement = self.selectedModel
+                   
                 }, label: {
                     Image(systemName: "xmark")
                     .resizable()
@@ -169,7 +176,10 @@ struct PlacementButtonsView: View {
                 
                 //Confirmation Button
                 Button(action: {
-                    print("Debug: Confirm Model Placement")
+                    
+                    self.modelConfirmedForPlacement = self.selectedModel
+                    
+                    print("Debug: Confirm \(String(describing: self.selectedModel)) Placement")
                     
                     self.resetPlacementParameters()
                 }, label: {
